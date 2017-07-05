@@ -1,2 +1,7 @@
-cp -Rf /tmp/src/. $CATALINA_HOME/webapps
+cd /tmp/src
 
+source /etc/profile.d/maven.sh
+
+mvn package
+
+mv target/Dashboard.war $CATALINA_HOME/webapps

@@ -2,20 +2,24 @@
   "apiVersion": "v1",
   "kind": "Template",
   "metadata": {
-    "name": "tomcat8-jdk8-war"
+    "name": "tomcat8-jdk8",
+    "annotations": {
+      "description": "Tomcat Java application",
+      "tags": "application,java,tomcat"
+    }
   },
   "parameters": [
     {
       "name": "SOURCE_REPOSITORY_URL",
-      "displayName": "Git Repository where you have the binaries",
-      "description": "WAR files git repo url",
-      "value": "https://github.com/debianmaster/sample-binaries.git"
+      "displayName": "Git Repository where you have the source code",
+      "description": "Source code files git repo url",
+      "value": "https://github.com/karthikeayan/my-app.git"
     },
     {
       "name": "APP_NAME",
       "displayName": "Application Name",
       "description": "Application name",
-      "value": "tomcat8-jdk8-war-app"
+      "value": "tomcat8-jdk8-app"
     }
   ],
   "objects": [
@@ -92,13 +96,13 @@
         "triggers": [
           {
             "github": {
-              "secret": "cK9NgyT9bMNAmmMjNi_7"
+              "secret": "769c2e17798e25048e89f7185e8c0cf1"
             },
             "type": "GitHub"
           },
           {
             "generic": {
-              "secret": "EQ0d6gvPJz63eWAXkjSj"
+              "secret": "1ecded2888837102d917ae128e6612b7"
             },
             "type": "Generic"
           },

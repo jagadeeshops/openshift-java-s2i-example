@@ -1,7 +1,12 @@
 FROM openshift/base-centos7
-MAINTAINER Chakradhar Rao Jonagam (9chakri@gmail.com)
+MAINTAINER Karthikeyan Sundararajan (karthike1991@gmail.com)
 
 ENV BUILDER_VERSION 1.1
+
+LABEL io.k8s.description="Maven/Tomcat Java Builder Image" \
+      io.k8s.display-name="MavenTokcat 1.1" \
+      io.openshift.expose-services="8080:http" \
+      io.openshift.tags="builder,java,tomcat,maven"
 
 RUN yum -y update; \ 
     yum install wget -y; \ 
@@ -17,9 +22,16 @@ ENV CATALINA_HOME /tomcat
 
 
 # Install openjdk 1.8 
-RUN yum install java-1.8.0-openjdk.x86_64* -y && \ 
+RUN yum install java-1.8.0-openjdk-devel.x86_64* -y && \ 
     yum clean all -y && \
     rm -rf /var/lib/apt/lists/* 
+
+# Install Maven
+RUN cd /opt && wget -q http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
+    tar xzf apache-maven-3.3.9-bin.tar.gz && \
+    ln -s apache-maven-3.3.9 maven && \
+    echo "export M2_HOME=/opt/maven" >> /etc/profile.d/maven.sh && \
+    echo "export PATH=\${M2_HOME}/bin:${PATH}" >> /etc/profile.d/maven.sh
 
 # INSTALL TOMCAT 
 WORKDIR /
