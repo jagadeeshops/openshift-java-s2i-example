@@ -4,4 +4,4 @@ source /etc/profile.d/maven.sh
 
 mvn package
 
-mv target/Dashboard.war $CATALINA_HOME/webapps
+mv target/*.war $CATALINA_HOME/webapps/ROOT.war
