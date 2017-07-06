@@ -95,7 +95,7 @@ oc create -f tomcat8-jdk8-war.template
 
 #### Create Image stream & export templates 
 ```sh
-oc new-app tomcat8-jdk8~https://github.com/debianmaster/sample-binaries.git --name='tomcat8-jdk8-war'
+oc new-app tomcat8-jdk8~https://github.com/karthikeayan/sample-binaries.git --name='tomcat8-jdk8-war'
 oc export is,bc,dc,svc --as-template=tomcat8-jdk8  > template
 ```
 
