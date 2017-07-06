@@ -59,7 +59,7 @@ docker run -d  -p 8080:8080  tomcat8-jdk8-app
 ## Using the template provided in this repo.
 ```sh
 oc import-image --from=openshift/base-centos7 openshift/base-centos7 -n openshift --confirm
-oc new-build --strategy=docker --name=tomcat8-jdk8 https://github.com/debianmaster/openshift-s2i-example.git -n openshift
+oc new-build --strategy=docker --name=tomcat8-jdk8 https://github.com/karthikeayan/openshift-s2i-example.git -n openshift
 oc create -f tomcat8-jdk8-war.template
 ```
 > Goto ui -> Add to project and look for tomcat8-jdk8-war template. 
