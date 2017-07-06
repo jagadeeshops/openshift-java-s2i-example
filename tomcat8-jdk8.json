@@ -20,6 +20,18 @@
       "displayName": "Application Name",
       "description": "Application name",
       "value": "tomcat8-jdk8-app"
+    },
+    {
+      "name": "APP_CONTEXT",
+      "displayName": "Application Context",
+      "description": "Relative path to where pom.xml exists",
+      "value": ""
+    },
+    {
+      "name": "SSH_SECRET",
+      "displayName": "SSH Secret",
+      "description": " Name to authenticate with Github",
+      "value": ""
     }
   ],
   "objects": [
@@ -81,7 +93,11 @@
             "uri": "${SOURCE_REPOSITORY_URL}"
           },
           "secrets": [],
-          "type": "Git"
+          "type": "Git",
+          "contextDir": "${APP_CONTEXT}",
+          "sourceSecret": {
+            "name": "${SSH_SECRET}"
+          }
         },
         "strategy": {
           "sourceStrategy": {
