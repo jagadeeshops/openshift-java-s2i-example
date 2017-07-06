@@ -111,7 +111,7 @@
             "from": {
               "kind": "ImageStreamTag",
               "name": "${APP_NAME}:latest",
-              "namespace": "${NAMESPACE}"
+              "namespace": "${APP_NAME}"
             }
           },
           "type": "Source"
