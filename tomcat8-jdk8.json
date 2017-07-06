@@ -11,9 +11,15 @@
   "parameters": [
     {
       "name": "SOURCE_REPOSITORY_URL",
-      "displayName": "Git Repository where you have the source code",
+      "displayName": "Git Repository",
       "description": "Source code files git repo url",
       "value": "https://github.com/karthikeayan/my-app.git"
+    },
+    {
+      "name": "SOURCE_REPOSITORY_REF",
+      "displayName": "Git Repository branch",
+      "description": "Particular branch to fetch",
+      "value": "master"
     },
     {
       "name": "APP_NAME",
@@ -90,7 +96,8 @@
         "resources": {},
         "source": {
           "git": {
-            "uri": "${SOURCE_REPOSITORY_URL}"
+            "uri": "${SOURCE_REPOSITORY_URL}",
+            "ref": "${SOURCE_REPOSITORY_REF}"
           },
           "secrets": [],
           "type": "Git",
@@ -103,8 +110,8 @@
           "sourceStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "name": "tomcat8-jdk8:latest",
-              "namespace": "openshift"
+              "name": "${APP_NAME}:latest",
+              "namespace": "${NAMESPACE}"
             }
           },
           "type": "Source"
@@ -155,14 +162,6 @@
           "deploymentconfig": "${APP_NAME}"
         },
         "strategy": {
-          "resources": {},
-          "rollingParams": {
-            "intervalSeconds": 1,
-            "maxSurge": "25%",
-            "maxUnavailable": "25%",
-            "timeoutSeconds": 600,
-            "updatePeriodSeconds": 1
-          },
           "type": "Rolling"
         },
         "template": {
@@ -170,7 +169,7 @@
             "annotations": {
               "openshift.io/generated-by": "OpenShiftNewApp"
             },
-            "creationTimestamp": null,
+            "name": "${APP_NAME}",
             "labels": {
               "app": "${APP_NAME}",
               "deploymentconfig": "${APP_NAME}"
