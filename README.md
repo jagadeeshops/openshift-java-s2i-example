@@ -65,7 +65,7 @@ oc create -f tomcat8-jdk8-war.template
 > Goto ui -> Add to project and look for tomcat8-jdk8-war template. 
 > In the step above we are creating a base image with tomcat and java and storing it on openshift namespace   
 
-![alt text](https://raw.githubusercontent.com/debianmaster/openshift-s2i-example/master/add2proj.png "Add to Proj")
+![alt text](https://raw.githubusercontent.com/karthikeayan/openshift-s2i-example/master/add2proj.png "Add to Proj")
 
 
 
